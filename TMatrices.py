@@ -14,6 +14,8 @@ def validarMatriz(pMatriz):
     Salidas:
     -return(bool): True si la matriz es válida, False si
     """
+    if pMatriz == []:
+        return "La matriz está vacia"
     largoMatriz = len(pMatriz)
     largoFila = len(pMatriz[0])
 
@@ -259,6 +261,8 @@ def ESMatrizMagica(pMatriz):
     validacion = validarMatriz(pMatriz)
     if validacion != True:
         return validacion
+    if not all(all(isinstance(i, list) and isinstance(j, int) for j in i) for i in pMatriz):
+        return "Todos los elementos de la listas de la matriz deben de ser enteros."
     return matrizMagica(pMatriz)
 
 #Reto 9
@@ -339,7 +343,10 @@ print("Reto 6")
 print("Entrada: [[1,2,3],[1,12,1],[0,0,-3]]")
 print("Salida: ")
 print(ESSoloBajoDiagonal([[1,2,3],[1,12,1],[0,0,-3]]))
-print()
+
+print("Entrada: [[1,2,3],[1,12,1],[0,0,-3]]")
+print("Salida: ")
+print(ESSoloBajoDiagonal([[1,2,3],[0,12,1],[0,0,-3]]))
 
 print("Reto 7")
 print("Entrada: [[1,2,3,4],[5,6,7,8],[9,10,11,12]],'i'")
@@ -351,9 +358,28 @@ print(ESGirarMatriz([[1,2,3,4],[5,6,7,8],[9,10,11,12]],"d"))
 print()
 
 print("Reto 8")
-print("Entrada: [[2,7,6], [9,5,1], [4,3,8]]")
+print("Entrada: [ [1,5,6], [3,7] ]")
 print("Salida: ")
-print(ESMatrizMagica([[2,7,6], [9,5,1], [4,3,8]]))
+print(ESMatrizMagica([ [1,5,6], [3,7] ]))
+print("Entrada: [ [1,5,6], [3,7,9] ]")
+print("Salida: ")
+print(ESMatrizMagica([ [1,5,6], [3,7,9] ]))
+print("Entrada: []")
+print("Salida: ")
+print(ESMatrizMagica([]))
+print("Entrada: [ [17,3,19], [15,13,11], [7,23,9] ]")
+print("Salida: ")
+print(ESMatrizMagica([ [17,3,19], [15,13,11], [7,23,9] ]))
+print("Entrada: [ [16,3,2,13], [5,10,11,8], [9,6,7,12], [4,15,14,1] ]")
+print("Salida: ")
+print(ESMatrizMagica([ [16,3,2,13], [5,10,11,8], [9,6,7,12], [4,15,14,1] ]))
+print("Entrada: [ [8,5], [3, 6] ]")
+print("Salida: ")
+print(ESMatrizMagica([ [8,5], [3, 6] ]))
+print("Entrada: [ [1,2,], ['a', 'z'] ]")
+print("Salida: ")
+print(ESMatrizMagica([ [1,2,], ["a", "z"] ]))
+
 print()
 
 print("Reto 9")
@@ -361,15 +387,5 @@ print("Entrada: [[90,12,90,89,89,89,89,89],[90,67,78,89,89,89,89,89],[0,0,0,0,0,
 print("Salida: ")
 print(analizarMatrizNotas([[90,12,90,89,89,89,89,89],[90,67,78,89,89,89,89,89],[0,0,0,0,0,0,0,0]]))
 
-#print(ESSumaRestaMatrices([[1,2],[3,4]],[[5,6],[7,8]],"+"))
-#print(ESSumaRestaMatrices([[1,3,2],[1,0,0],[1,2,2]],[[1,0,5],[7,5,0],[2,1,1]],"+")
-#)
-#print(ESSumaRestaMatrices([[1,3,2],[1,0,0],[1,2,2]],[[1,0],[7,5],[2,1]],"+")
-#
-#)
-#print(ESSumaRestaMatrices([[1,2],[3,4]],[[5,6],[7,8]],"/")
-#)
-#print(ESGirarMatriz([[1,2,3,4],[5,6,7,8],[9,10,11,12]],"i"))
-#print(ESGirarMatriz([[1,2,3,4],[5,6,7,8],[9,10,11,12]],"d"))
     
 
