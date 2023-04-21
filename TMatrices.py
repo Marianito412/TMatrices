@@ -28,7 +28,26 @@ def sumaRestaMatrices(pMatriz1,pMatriz2,pOperacion):
         filas+=1
     return resultado
 
-print(sumaRestaMatrices([[1,2],[3,6]],[[5,6],[7,8]],"-"))
+def sumaRestaMatricesAux(pMatriz1,pMatriz2,pOperacion):
+    if not pOperacion=="+" and not pOperacion=="-":
+        return "La operación debe ser “+” para suma y “-” para resta."
+    elif not all(len(i)==len(pMatriz1[0]) for i in pMatriz1):
+        return "Las matrices deben ser de la misma dimensión."
+    elif not all(len(i)==len(pMatriz1[0]) for i in pMatriz2):
+        return "Las matrices deben ser de la misma dimensión."
+    elif not len(pMatriz1)==len(pMatriz2):
+        return "Las matrices deben ser de la misma dimensión."
+    elif not all(all(isinstance(i, list) and isinstance(j, int) for j in i) for i in pMatriz1):
+        return "Todos los elementos de la listas de la matriz deben de ser enteros."
+    elif not all(all(isinstance(i, list) and isinstance(j, int) for j in i) for i in pMatriz2):
+        return "Todos los elementos de la listas de la matriz deben de ser enteros."
+    return sumaRestaMatrices(pMatriz1,pMatriz2,pOperacion)
+
+def ESSumaRestaMatrices(pMatriz1,pMatriz2,pOperacion):
+    return sumaRestaMatricesAux(pMatriz1,pMatriz2,pOperacion)
+    
+print(ESSumaRestaMatrices([[1,2],[3,6]],[[5,6],[7,8]],"-"))
+print(ESSumaRestaMatrices([[1,2],[3,6]],[[5,6],[6,8]],"-"))
 
 #Reto 7
 
@@ -58,5 +77,6 @@ def girarMatriz(pMatriz,pDireccion):
 
     
 
-print(girarMatriz([[1,2,3,4],[5,6,7,8],[9,10,11,12]],"I"))     
+print(girarMatriz([[1,2,3,4],[5,6,7,8],[9,10,11,12]],"I"))
+
     
