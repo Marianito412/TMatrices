@@ -1,18 +1,6 @@
 #Reto 3
 
 def sumaRestaMatrices(pMatriz1,pMatriz2,pOperacion):
-    if not pOperacion=="+" and not pOperacion=="-":
-        return "La operación debe ser “+” para suma y “-” para resta."
-    elif not all(len(i)==len(pMatriz1[0]) for i in pMatriz1):
-        return "Las matrices deben ser de la misma dimensión."
-    elif not all(len(i)==len(pMatriz1[0]) for i in pMatriz2):
-        return "Las matrices deben ser de la misma dimensión."
-    elif not len(pMatriz1)==len(pMatriz2):
-        return "Las matrices deben ser de la misma dimensión."
-    elif not all(all(isinstance(i, list) and isinstance(j, int) for j in i) for i in pMatriz1):
-        return "Todos los elementos de la listas de la matriz deben de ser enteros."
-    elif not all(all(isinstance(i, list) and isinstance(j, int) for j in i) for i in pMatriz2):
-        return "Todos los elementos de la listas de la matriz deben de ser enteros."
     filas=0
     resultado=[]
     while filas <= len(pMatriz1)-1:
@@ -32,7 +20,7 @@ def sumaRestaMatricesAux(pMatriz1,pMatriz2,pOperacion):
     if not pOperacion=="+" and not pOperacion=="-":
         return "La operación debe ser “+” para suma y “-” para resta."
     elif not all(len(i)==len(pMatriz1[0]) for i in pMatriz1):
-        return "Las matrices deben ser de la misma dimensión."
+        return "La matriz debe ser cuadrada."
     elif not all(len(i)==len(pMatriz1[0]) for i in pMatriz2):
         return "Las matrices deben ser de la misma dimensión."
     elif not len(pMatriz1)==len(pMatriz2):
@@ -46,9 +34,6 @@ def sumaRestaMatricesAux(pMatriz1,pMatriz2,pOperacion):
 def ESSumaRestaMatrices(pMatriz1,pMatriz2,pOperacion):
     return sumaRestaMatricesAux(pMatriz1,pMatriz2,pOperacion)
     
-print(ESSumaRestaMatrices([[1,2],[3,6]],[[5,6],[7,8]],"-"))
-print(ESSumaRestaMatrices([[1,2],[3,6]],[[5,6],[6,8]],"-"))
-
 #Reto 7
 
 def girarDerecha(pMatriz):
@@ -75,8 +60,23 @@ def girarMatriz(pMatriz,pDireccion):
     else:
         return girarIzquierda(pMatriz)
 
-    
+def girarMatrizAUX(pMatriz1,pDireccion):
+    pDireccion=pDireccion.lower()
+    if not pDireccion=="d" and not pDireccion=="i":
+        return "La operación debe ser “d” para derecha e “i” para izquierda."
+    elif not all(len(i)==len(pMatriz1[0]) for i in pMatriz1):
+        return "La matriz debe ser cuadrada."
+    elif not all(all(isinstance(i, list) and isinstance(j, int) for j in i) for i in pMatriz1):
+        return "Todos los elementos de la listas de la matriz deben de ser enteros."
+    return girarMatriz(pMatriz1,pDireccion)
 
-print(girarMatriz([[1,2,3,4],[5,6,7,8],[9,10,11,12]],"I"))
+def ESGirarMatriz(pMatriz1,pDireccion):
+    return girarMatrizAUX(pMatriz1,pDireccion)
 
+print(ESSumaRestaMatrices([[1,2],[3,4]],[[5,6],[7,8]],"+"))
+print(ESSumaRestaMatrices([[1,3,2],[1,0,0],[1,2,2]],[[1,0,5],[7,5,0],[2,1,1]],"+"))
+print(ESSumaRestaMatrices([[1,3,2],[1,0,0],[1,2,2]],[[1,0],[7,5],[2,1]],"+"))
+print(ESSumaRestaMatrices([[1,2],[3,4]],[[5,6],[7,8]],"/"))
+print(ESGirarMatriz([[1,2,3,4],[5,6,7,8],[9,10,11,12]],"i"))
+print(ESGirarMatriz([[1,2,3,4],[5,6,7,8],[9,10,11,12]],"d"))
     
