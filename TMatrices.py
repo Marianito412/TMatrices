@@ -5,8 +5,15 @@
 
 #Definición de funciones
 
-#Reto 1
+#Validación
 def validarMatriz(pMatriz):
+    """
+    Funcionalidad: Valida la matriz dada
+    Entradas:
+    -pMatriz(list): La matriz a validar
+    Salidas:
+    -return(bool): True si la matriz es válida, False si
+    """
     largoMatriz = len(pMatriz)
     largoFila = len(pMatriz[0])
 
@@ -18,17 +25,6 @@ def validarMatriz(pMatriz):
             return "Cada elemento de la matriz debe poseer la misma cantidad de columnas"
         if not isinstance(pMatriz[0], list):
             return "Cada elemento debe ser de tipo lista"
-    return True
-
-def diagonalSuperior(pMatriz):
-    validacion = validarMatriz(pMatriz)
-    if validacion != True:
-        return validacion
-    
-    for i in range(len(pMatriz)):
-        for j in range(len(pMatriz[i])):
-            if (j<i) and pMatriz[i][j] != 0:
-                return False
     return True
 
 #Reto 3
@@ -68,6 +64,13 @@ def ESSumaRestaMatrices(pMatriz1,pMatriz2,pOperacion):
 
 #Reto 6
 def soloBajoDiagonal(pMatriz):
+    """
+    Funcionalidad: Verifca que sólo debajo de la diagonal está 100% llena de ceros y no hay ceros en ningún otro lugar
+    Entradas:
+    -pMatriz(list): La matriz a validar
+    Salidas:
+    -return(bool): True si sólo debajo de la diagonal está 100% llena de ceros y no hay ceros en ningún otro lugar si no False
+    """
     for i in range(len(pMatriz)):
         for j in range(len(pMatriz[i])):
             if ((j<i) and pMatriz[i][j] != 0) or (j>=i and pMatriz[i][j] == 0):
@@ -75,6 +78,13 @@ def soloBajoDiagonal(pMatriz):
     return True
 
 def ESSoloBajoDiagonal(pMatriz):
+    """
+    Funcionalidad: Corre verificaciones y si pasan llama a soloBajoDiagonal
+    Entradas:
+    -pMatriz(list): La matriz a validar
+    Salidas:
+    -return(bool): True si sólo debajo de la diagonal está 100% llena de ceros y no hay ceros en ningún otro lugar si no False
+    """
     validacion = validarMatriz(pMatriz)
     if validacion != True:
         return validacion
@@ -121,18 +131,40 @@ def ESGirarMatriz(pMatriz1,pDireccion):
 
 #Reto 8
 def sumaFila(pLista):
+    """
+    Funcionalidad: Suma todos los elementos de una lista
+    Entradas:
+    -pLista(list): La lista a sumar
+    Salidas:
+    -resultado(int): La suma de la lista dada
+    """
     resultado = 0
     for i in pLista:
         resultado+=i
     return resultado
 
 def sumaColumna(pMatriz, pCol):
+    """
+    Funcionalidad: Suma todos los elementos de una columna
+    Entradas:
+    -pLista(list): La matriz sobre la que operar
+    -pColumna(int): La columna a sumar
+    Salidas:
+    -resultado(int): La suma de la columna dada
+    """
     resultado = 0
     for i in pMatriz:
         resultado += i[pCol]
     return resultado
 
 def matrizMagica(pMatriz):
+    """
+    Funcionalidad: Determina si una matriz es o no mágica
+    Entradas:
+    -pMatriz(list): La matriz a determinar
+    Salidas:
+    -resultado(int): La suma de una de las filas o un texto indicando que no es una matriz mágica
+    """
     resultados = []
     diagonal = 0
     diagInversa = 0
@@ -151,6 +183,13 @@ def matrizMagica(pMatriz):
         return "No es una matriz mágica"
 
 def ESMatrizMagica(pMatriz):
+    """
+    Funcionalidad: Corre verificaciones y si pasan llama a matrizMagica
+    Entradas:
+    -pMatriz(list): La matriz a validar
+    Salidas:
+    -return(bool): True si sólo debajo de la diagonal está 100% llena de ceros y no hay ceros en ningún otro lugar si no False
+    """
     validacion = validarMatriz(pMatriz)
     if validacion != True:
         return validacion
@@ -158,6 +197,13 @@ def ESMatrizMagica(pMatriz):
 
 #Reto 9
 def validarNotas(pMatriz):
+    """
+    Funcionalidad: valida que todas las notas en una matriz tenga un mínimo de 8 notas cada uno
+    Entradas:
+    -pMatriz: La matriz a validar
+    Salidas:
+    return(bool): True si la matriz es válida, de lo contrario un mensaje explicando el problema
+    """
     if pMatriz == []:
         return "Matriz vacia"
     for notas in pMatriz:
@@ -166,18 +212,39 @@ def validarNotas(pMatriz):
     return True
     
 def promedio(pLista):
+    """
+    Funcionalidad: Retorna el promedio de una lista de números
+    Entradas:
+    -pLista: La lista de números a promediar
+    Salidas:
+    return(float): El promedio de la lista
+    """
     resultado = 0
     for i in pLista:
         resultado+=i
     return resultado/len(pLista)
 
 def analizarMatrizNotas(pMatriz):
+    """
+    Funcionalidad: Analiza las notas dadas consiguiendo la menor, mayor, el promedio y el estado del estudiante
+    Entradas:
+    -pMatriz(list): La matriz de notas
+    Salidas:
+    -analisis(list): La matriz de analisis con la información obtenida
+    """
     analisis = []
     for notas in pMatriz:
         analisis.append([promedio(notas), min(notas), max(notas), "Aprobado" if promedio(notas) >=70 else "Reprobado"])
     return analisis
 
 def ESAnalizarMatrizNotas(pMatriz):
+    """
+    Funcionalidad: Corre verificaciones y si pasan llama a analizarMatrizNotas
+    Entradas:
+    -pMatriz(list): La matriz a validar
+    Salidas:
+    -return(list): La matriz de analisis con la información obtenida
+    """
     validacion = validarNotas(pMatriz)
     if not validacion==True:
         return validacion
